@@ -1,7 +1,11 @@
 @import "tailwindcss";
 
 .cross-box {
-    @apply border relative bg-white size-10 
+    font-size: 60px;
+    line-height: 80px;
+    width: 80px;
+    height: 80px;
+    @apply border relative bg-white text-center
 }
 
 .cross-box::before, .cross-box::after {
@@ -11,10 +15,10 @@
 
 .cross-box::before {
     height: 1px;
-    @apply top-1/2 left-0 right-0 translate-y-1/2
+    @apply top-1/2 left-0 right-0 -translate-y-1/2
 }
 
 .cross-box::after {
     width: 1px;
-    @apply top-0 left-1/2 bottom-0 translate-x-1/2
+    @apply top-0 left-1/2 bottom-0 -translate-x-1/2
 }
