@@ -5,12 +5,12 @@
     line-height: 80px;
     width: 80px;
     height: 80px;
-    @apply border relative bg-white text-center
+    @apply border relative bg-white text-black text-center
 }
 
 .cross-box::before, .cross-box::after {
     content: "";
-    @apply absolute bg-gray-500
+    @apply absolute bg-black/40
 }
 
 .cross-box::before {
