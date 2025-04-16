@@ -1,5 +1,5 @@
-import fonts from '../config/font'
-import WordGridBox from '../components/WordGridBox';
+import fonts from '@/config/font'
+import WordGridBox from '@/components/WordGridBox';
 
 function App() {
   const defaultText = "鉴于对人类家庭所有成员的固有尊严及其平等的和不移的权利的承认,乃是世界自由、正义与和平的基础"

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .cross-box {
-    @apply border relative bg-white
+    @apply border relative bg-white size-10 
 }
 
 .cross-box::before, .cross-box::after {

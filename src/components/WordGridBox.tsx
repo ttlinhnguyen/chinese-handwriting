@@ -1,4 +1,4 @@
-import "./WordGridBox.css";
+import "@/components/WordGridBox.css";
 
 const WordGridBox = ({...props}) => {
     return (
