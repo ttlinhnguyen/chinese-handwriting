@@ -1,4 +1,4 @@
-import { DEFAULT_BOX_SIZE, DEFAULT_TEXT_OPACITY } from "@/config/font";
+import { DEFAULT_BOX_SIZE, DEFAULT_TEXT_OPACITY } from "@/config/word-grid";
 import { colors } from "@mui/material";
 import React, { PropsWithChildren } from "react";
 

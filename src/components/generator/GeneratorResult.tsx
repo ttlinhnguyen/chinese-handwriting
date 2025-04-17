@@ -2,7 +2,8 @@ import "./GeneratorResult.css";
 import React, { useState } from "react";
 import { Button, FormControl, MenuItem, Slider, TextField } from "@mui/material";
 import WordGridBox from "@/components/WordGridBox";
-import { DEFAULT_BOX_SIZE, DEFAULT_FONT_NAME, DEFAULT_TEXT_OPACITY, FONTS } from "@/config/font";
+import { FONTS } from "@/config/font";
+import { BOX_SIZE_THRESHOLD, DEFAULT_BOX_SIZE, DEFAULT_FONT_NAME, DEFAULT_TEXT_OPACITY, TEXT_OPACITY_THRESHOLD } from "@/config/word-grid";
 
 interface GeneratorResultProps {
     text: string;
@@ -34,13 +35,13 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({text}) => {
         <FormControl>
           <div>Size</div>
           <Slider marks defaultValue={DEFAULT_BOX_SIZE} valueLabelDisplay="on" 
-            min={30} max={150} step={5}
+            min={BOX_SIZE_THRESHOLD.min} max={BOX_SIZE_THRESHOLD.max} step={BOX_SIZE_THRESHOLD.step}
             value={boxSize} onChange={e => setBoxSize(Number(e.target?.value))} />
         </FormControl>
         <FormControl>
           <div>Text opacity</div>
           <Slider marks defaultValue={DEFAULT_TEXT_OPACITY} valueLabelDisplay="on" 
-            min={0} max={1} step={0.1}
+            min={TEXT_OPACITY_THRESHOLD.min} max={TEXT_OPACITY_THRESHOLD.max} step={TEXT_OPACITY_THRESHOLD.step}
             value={textOpacity} onChange={e => setTextOpacity(Number(e.target?.value))} />
         </FormControl>
         <div className="m-auto">

@@ -1,13 +1,11 @@
 import { FormEvent, useState } from "react";
 import { Button, FormHelperText, TextField } from "@mui/material";
 import GeneratorResult from "@/components/generator/GeneratorResult";
-
-const WORD_LIMIT = 1000;
+import { DEFAULT_TEXT, WORD_LIMIT } from "@/config/generator";
 
 const GeneratorForm = () => {
-  const defaultText = "鉴于对人类家庭所有成员的固有尊严及其平等的和不移的权利的承认,乃是世界自由、正义与和平的基础";
-  const [formText, setFormText] = useState<string>(defaultText);
-  const [inputText, setInputText] = useState<string>("");
+  const [formText, setFormText] = useState<string>(DEFAULT_TEXT);
+  const [inputText, setInputText] = useState<string>(DEFAULT_TEXT);
   
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -29,7 +27,7 @@ const GeneratorForm = () => {
         <FormHelperText id="text-input-helper">
           Word limit: {WORD_LIMIT}. Word count: {formText.length}
         </FormHelperText>
-        <Button variant="contained" type="submit">Generate</Button>
+        <Button variant="contained" type="submit" disabled={formText === inputText}>Generate</Button>
       </form>
 
       <GeneratorResult text={inputText}/>
