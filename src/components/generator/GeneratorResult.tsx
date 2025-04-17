@@ -26,8 +26,8 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({text}) => {
         <TextField select label="Font" defaultValue={DEFAULT_FONT_NAME}
           value={selectedFont} onChange={e => setSelectedFont(e.target.value)}>
           {FONTS.map(font => (
-            <MenuItem value={font.name} key={font.name}>
-              {font.name}
+            <MenuItem value={font.name} key={font.name} style={{fontFamily: font.name}}>
+              <span className="text-xl">{font.name}</span>
             </MenuItem>
           ))}
         </TextField>

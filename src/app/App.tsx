@@ -1,5 +1,6 @@
 import GeneratorForm from "@/components/generator/GeneratorForm";
 import { FONTS } from "@/config/font";
+import { Container } from "@mui/material";
 
 function App() {
   // Load font faces' CSS styles
@@ -14,9 +15,9 @@ function App() {
     <>
       <style>{fontFaces.join("\n")}</style>
 
-      <main className="container m-auto">
+      <Container maxWidth="md">
         <GeneratorForm />
-      </main>
+      </Container>
     </>
   );
 }
