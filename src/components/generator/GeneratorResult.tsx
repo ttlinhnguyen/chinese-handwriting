@@ -24,7 +24,7 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({text}) => {
 
       <div id="generator-result" style={{fontFamily: selectedFont}} className='flex flex-wrap gap-y-2'>
         {text.split("").map((word, index) => (
-          <WordGridBox key={index}>{word}</WordGridBox>
+          <WordGridBox key={index} text={word}></WordGridBox>
         ))}
       </div>
     </>
