@@ -1,0 +1,15 @@
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #generator-result * {
+        visibility: visible;
+    }
+
+    #generator-result {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}

@@ -1,3 +1,4 @@
+import "./GeneratorResult.css";
 import React, { useState } from "react";
 import WordGridBox from "@/components/WordGridBox";
 import fonts from "@/config/font";
@@ -10,7 +11,6 @@ interface GeneratorResultProps {
 const GeneratorResult: React.FC<GeneratorResultProps> = ({text}) => {
   const [selectedFont, setSelectedFont] = useState(fonts[0].name);
 
-
   return (
     <>
       <TextField select label="Font"
@@ -22,7 +22,7 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({text}) => {
         ))}
       </TextField>
 
-      <div style={{fontFamily: selectedFont}} className='flex flex-wrap gap-y-2'>
+      <div id="generator-result" style={{fontFamily: selectedFont}} className='flex flex-wrap gap-y-2'>
         {text.split("").map((word, index) => (
           <WordGridBox key={index}>{word}</WordGridBox>
         ))}
