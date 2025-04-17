@@ -1,3 +1,4 @@
+import { DEFAULT_BOX_SIZE } from "@/config/font";
 import React, { PropsWithChildren } from "react";
 
 interface WordGridBoxProps {
@@ -8,7 +9,7 @@ interface WordGridBoxProps {
   props?: PropsWithChildren
 }
 
-const WordGridBox: React.FC<WordGridBoxProps> = ({text, size = 60, lineColor = "darkseagreen", bgColor = "white", ...props}) => {
+const WordGridBox: React.FC<WordGridBoxProps> = ({text, size = DEFAULT_BOX_SIZE, lineColor = "darkseagreen", bgColor = "white", ...props}) => {
   const strokeWidth = size/50;
 
   return (

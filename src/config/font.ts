@@ -4,7 +4,7 @@ import FangZhengFangSongGBK from "@/assets/fonts/FangZhengFangSong-GBK.ttf";
 import FZYBXSJF from "@/assets/fonts/FZYBXSJF.ttf";
 import FZYBKSK from "@/assets/fonts/FZYBKSK.ttf";
 
-const fonts = [
+const FONTS = [
   {
     name: "FZ KaiTi GBK",
     url: FangZhengKaiTiGBK,
@@ -27,4 +27,12 @@ const fonts = [
   },
 ];
 
-export default fonts;
+const DEFAULT_FONT_NAME = FONTS[0].name;
+
+const DEFAULT_BOX_SIZE = 60;
+
+export {
+  FONTS,
+  DEFAULT_FONT_NAME,
+  DEFAULT_BOX_SIZE,
+};

@@ -1,9 +1,9 @@
 import GeneratorForm from "@/components/generator/GeneratorForm";
-import fonts from "@/config/font";
+import { FONTS } from "@/config/font";
 
 function App() {
   // Load font faces' CSS styles
-  const fontFaces = fonts.map(font => (
+  const fontFaces = FONTS.map(font => (
     `@font-face {
       font-family: '${font.name}';
       src: url('${font.url}') format('truetype');
