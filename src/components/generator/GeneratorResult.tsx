@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import WordGridBox from "@/components/WordGridBox";
 import fonts from "@/config/font";
+import { MenuItem, TextField } from "@mui/material";
 
 interface GeneratorResultProps {
     text: string;
@@ -20,12 +21,15 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({text}) => {
     <>
       <style>{fontFaces.join("\n")}</style>
 
-      <select className='m-auto p-3' value={selectedFont} 
-        onChange={e => setSelectedFont(e.target.value)}>
+      <TextField select label="Font"
+        value={selectedFont} onChange={e => setSelectedFont(e.target.value)}>
         {fonts.map(font => (
-          <option value={font.name} key={font.name}>{font.name}</option>
+          <MenuItem value={font.name} key={font.name}>
+            {font.name}
+          </MenuItem>
         ))}
-      </select>
+      </TextField>
+
       <div style={{fontFamily: selectedFont}} className='flex flex-wrap'>
         {text.split("").map((word, index) => (
           <WordGridBox key={index}>{word}</WordGridBox>

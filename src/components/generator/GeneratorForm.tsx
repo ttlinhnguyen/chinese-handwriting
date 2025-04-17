@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import { Button, FormHelperText, TextField } from "@mui/material";
 import GeneratorResult from "@/components/generator/GeneratorResult";
 
 const WORD_LIMIT = 1000;
@@ -22,12 +23,13 @@ const GeneratorForm = () => {
   return (
     <div className="m-3">
       <form onSubmit={handleFormSubmit}>
-        <textarea name="text" className='w-full min-h-20 border' 
+        <TextField multiline fullWidth minRows={5} aria-describedby="text-input-helper"
+          label="Text" name="text"
           value={formText} onChange={e => setFormText(e.target.value)} />
-        <div>
+        <FormHelperText id="text-input-helper">
           Word limit: {WORD_LIMIT}. Word count: {formText.length}
-        </div>
-        <button type="submit">Generate</button>
+        </FormHelperText>
+        <Button type="submit">Generate</Button>
       </form>
 
       <GeneratorResult text={inputText}/>
