@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import WordGridBox from '@/components/WordGridBox';
-import fonts from '@/config/font';
+import React, { useState } from "react";
+import WordGridBox from "@/components/WordGridBox";
+import fonts from "@/config/font";
 
 interface GeneratorResultProps {
     text: string;

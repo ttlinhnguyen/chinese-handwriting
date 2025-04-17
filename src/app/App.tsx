@@ -1,4 +1,4 @@
-import GeneratorForm from '@/components/generator/GeneratorForm';
+import GeneratorForm from "@/components/generator/GeneratorForm";
 
 function App() {
 
