@@ -1,20 +1,20 @@
-import { FormEvent, useState } from "react"
-import GeneratorResult from "@/components/generator/GeneratorResult"
+import { FormEvent, useState } from "react";
+import GeneratorResult from "@/components/generator/GeneratorResult";
 
 interface FormEventTarget {
     text: {value: string};
 };
 
 const GeneratorForm = () => {
-  const defaultText = "鉴于对人类家庭所有成员的固有尊严及其平等的和不移的权利的承认,乃是世界自由、正义与和平的基础"
-  const [inputText, setInputText] = useState("")
+  const defaultText = "鉴于对人类家庭所有成员的固有尊严及其平等的和不移的权利的承认,乃是世界自由、正义与和平的基础";
+  const [inputText, setInputText] = useState("");
   
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    const target = e.target as typeof e.target & FormEventTarget
-    setInputText(target.text.value)
-  }
+    const target = e.target as typeof e.target & FormEventTarget;
+    setInputText(target.text.value);
+  };
     
   return (
     <div>
@@ -25,7 +25,7 @@ const GeneratorForm = () => {
 
       <GeneratorResult text={inputText}/>
     </div>
-  )
-}
+  );
+};
 
-export default GeneratorForm
+export default GeneratorForm;

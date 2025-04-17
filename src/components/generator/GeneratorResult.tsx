@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import WordGridBox from '@/components/WordGridBox';
-import fonts from '@/config/font'
+import fonts from '@/config/font';
 
 interface GeneratorResultProps {
     text: string;
 }
 
 const GeneratorResult: React.FC<GeneratorResultProps> = ({text}) => {
-  const [selectedFont, setSelectedFont] = useState(fonts[0].name)
+  const [selectedFont, setSelectedFont] = useState(fonts[0].name);
 
   const fontFaces = fonts.map(font => (
     `@font-face {
@@ -32,7 +32,7 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({text}) => {
         ))}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default GeneratorResult
+export default GeneratorResult;

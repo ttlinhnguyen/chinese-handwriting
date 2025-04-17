@@ -1,8 +1,8 @@
-import FangZhengKaiTiGBK from "@/assets/fonts/FangZhengKaiTi-GBK.ttf"
-import FangZhengShuSongGBK from "@/assets/fonts/FangZhengShuSong-GBK.ttf"
-import FangZhengFangSongGBK from "@/assets/fonts/FangZhengFangSong-GBK.ttf"
-import FZYBXSJF from "@/assets/fonts/FZYBXSJF.ttf"
-import FZYBKSK from "@/assets/fonts/FZYBKSK.ttf"
+import FangZhengKaiTiGBK from "@/assets/fonts/FangZhengKaiTi-GBK.ttf";
+import FangZhengShuSongGBK from "@/assets/fonts/FangZhengShuSong-GBK.ttf";
+import FangZhengFangSongGBK from "@/assets/fonts/FangZhengFangSong-GBK.ttf";
+import FZYBXSJF from "@/assets/fonts/FZYBXSJF.ttf";
+import FZYBKSK from "@/assets/fonts/FZYBKSK.ttf";
 
 const fonts = [
   {
@@ -25,6 +25,6 @@ const fonts = [
     name: "FZYingBiXingShu",
     url: FZYBXSJF,
   },
-]
+];
 
-export default fonts
+export default fonts;
