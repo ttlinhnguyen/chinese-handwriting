@@ -1,15 +1,20 @@
-import { DEFAULT_BOX_SIZE } from "@/config/font";
+import { DEFAULT_BOX_SIZE, DEFAULT_TEXT_OPACITY } from "@/config/font";
+import { colors } from "@mui/material";
 import React, { PropsWithChildren } from "react";
 
 interface WordGridBoxProps {
   text: string;
   size?: number;
   lineColor?: string;
-  bgColor?: string;
+  textOpacity?: number;
   props?: PropsWithChildren
 }
 
-const WordGridBox: React.FC<WordGridBoxProps> = ({text, size = DEFAULT_BOX_SIZE, lineColor = "darkseagreen", bgColor = "white", ...props}) => {
+const WordGridBox: React.FC<WordGridBoxProps> = ({
+  text, size = DEFAULT_BOX_SIZE, lineColor = colors.green[300], 
+  textOpacity = DEFAULT_TEXT_OPACITY,  ...props
+}) => {
+  const bgColor = "white";
   const strokeWidth = size/50;
 
   return (
@@ -39,7 +44,7 @@ const WordGridBox: React.FC<WordGridBoxProps> = ({text, size = DEFAULT_BOX_SIZE,
       </svg>
 
       {/* Text */}
-      <div className="absolute size-full text-center">
+      <div className="absolute size-full text-center" style={{opacity: textOpacity}}>
         {text}
       </div>
     </div>
