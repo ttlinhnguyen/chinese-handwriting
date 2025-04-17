@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import WordGridBox from '@/components/WordGridBox';
 import fonts from '@/config/font'
 
-type GeneratorResultProps = {
+interface GeneratorResultProps {
     text: string;
 }
 

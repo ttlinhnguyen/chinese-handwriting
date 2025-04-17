@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react"
 import GeneratorResult from "@/components/generator/GeneratorResult"
 
-type FormEventTarget = {
+interface FormEventTarget {
     text: {value: string};
 };
 
@@ -16,16 +16,16 @@ const GeneratorForm = () => {
     setInputText(target.text.value)
   }
     
-    return (
+  return (
     <div>
-        <form onSubmit={handleFormSubmit}>
-            <textarea name="text" className='w-full min-h-10 border m-3' defaultValue={defaultText} />
-            <button type="submit">Generate</button>
-        </form>
+      <form onSubmit={handleFormSubmit}>
+        <textarea name="text" className='w-full min-h-10 border m-3' defaultValue={defaultText} />
+        <button type="submit">Generate</button>
+      </form>
 
-        <GeneratorResult text={inputText}/>
-      </div>
-    )
+      <GeneratorResult text={inputText}/>
+    </div>
+  )
 }
 
 export default GeneratorForm

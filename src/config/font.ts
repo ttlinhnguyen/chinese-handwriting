@@ -5,26 +5,26 @@ import FZYBXSJF from "@/assets/fonts/FZYBXSJF.ttf"
 import FZYBKSK from "@/assets/fonts/FZYBKSK.ttf"
 
 const fonts = [
-    {
-        name: "FZKaiTiGBK",
-        url: FangZhengKaiTiGBK,
-    },
-    {
-        name: "FZShuSongGBK",
-        url: FangZhengShuSongGBK,
-    },
-    {
-        name: "FZFangSongGBK",
-        url: FangZhengFangSongGBK,
-    },
-    {
-        name: "FZYingBiKaiShu",
-        url: FZYBKSK,
-    },
-    {
-        name: "FZYingBiXingShu",
-        url: FZYBXSJF,
-    },
+  {
+    name: "FZKaiTiGBK",
+    url: FangZhengKaiTiGBK,
+  },
+  {
+    name: "FZShuSongGBK",
+    url: FangZhengShuSongGBK,
+  },
+  {
+    name: "FZFangSongGBK",
+    url: FangZhengFangSongGBK,
+  },
+  {
+    name: "FZYingBiKaiShu",
+    url: FZYBKSK,
+  },
+  {
+    name: "FZYingBiXingShu",
+    url: FZYBXSJF,
+  },
 ]
 
 export default fonts
