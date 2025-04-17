@@ -1,7 +1,10 @@
 import { FormEvent, useState } from "react";
 import { Button, FormHelperText, TextField } from "@mui/material";
+import { EditNote as EditNoteIcon } from "@mui/icons-material";
+
 import GeneratorResult from "@/components/generator/GeneratorResult";
 import { DEFAULT_TEXT, WORD_LIMIT } from "@/config/generator";
+
 
 const GeneratorForm = () => {
   const [formText, setFormText] = useState<string>(DEFAULT_TEXT);
@@ -27,7 +30,7 @@ const GeneratorForm = () => {
         <FormHelperText id="text-input-helper">
           Word limit: {WORD_LIMIT}. Word count: {formText.length}
         </FormHelperText>
-        <Button variant="contained" type="submit" disabled={formText === inputText}>Generate</Button>
+        <Button variant="contained" type="submit" disabled={formText === inputText} endIcon={<EditNoteIcon />}>Generate</Button>
       </form>
 
       <GeneratorResult text={inputText}/>

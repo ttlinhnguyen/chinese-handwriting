@@ -1,6 +1,7 @@
 import "./GeneratorResult.css";
 import React, { useState } from "react";
-import { Button, FormControl, MenuItem, Slider, TextField } from "@mui/material";
+import { Button, FormControl, MenuItem, Slider, TextField, InputAdornment } from "@mui/material";
+import { Print as PrintIcon, FontDownload as FontIcon, FormatSize as FormatSizeIcon, Opacity as OpacityIcon } from "@mui/icons-material";
 import WordGridBox from "@/components/WordGridBox";
 import { FONTS } from "@/config/font";
 import { BOX_SIZE_THRESHOLD, DEFAULT_BOX_SIZE, DEFAULT_FONT_NAME, DEFAULT_TEXT_OPACITY, TEXT_OPACITY_THRESHOLD } from "@/config/word-grid";
@@ -23,8 +24,17 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({text}) => {
   return (
     <>
       <h2 className="mt-10 mb-5">Settings</h2>
-      <form className="mb-10 grid md:grid-cols-4 gap-5">
+      <form className="mb-10 grid gap-5">
         <TextField select label="Font" defaultValue={DEFAULT_FONT_NAME}
+          slotProps={{
+            input: {
+              startAdornment: (
+                <InputAdornment position="start">
+                  <FontIcon />
+                </InputAdornment>
+              ),
+            },
+          }}
           value={selectedFont} onChange={e => setSelectedFont(e.target.value)}>
           {FONTS.map(font => (
             <MenuItem value={font.name} key={font.name} style={{fontFamily: font.name}}>
@@ -32,20 +42,22 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({text}) => {
             </MenuItem>
           ))}
         </TextField>
-        <FormControl>
-          <div>Size</div>
-          <Slider marks defaultValue={DEFAULT_BOX_SIZE} valueLabelDisplay="on" 
-            min={BOX_SIZE_THRESHOLD.min} max={BOX_SIZE_THRESHOLD.max} step={BOX_SIZE_THRESHOLD.step}
-            value={boxSize} onChange={e => setBoxSize(Number(e.target?.value))} />
-        </FormControl>
-        <FormControl>
-          <div>Text opacity</div>
-          <Slider marks defaultValue={DEFAULT_TEXT_OPACITY} valueLabelDisplay="on" 
-            min={TEXT_OPACITY_THRESHOLD.min} max={TEXT_OPACITY_THRESHOLD.max} step={TEXT_OPACITY_THRESHOLD.step}
-            value={textOpacity} onChange={e => setTextOpacity(Number(e.target?.value))} />
-        </FormControl>
-        <div className="m-auto">
-          <Button variant="contained" onClick={printResult}>Print</Button>
+        <div className="grid md:grid-cols-3 gap-5">
+          <FormControl>
+            <div><FormatSizeIcon /> Size</div>
+            <Slider marks defaultValue={DEFAULT_BOX_SIZE} valueLabelDisplay="auto" 
+              min={BOX_SIZE_THRESHOLD.min} max={BOX_SIZE_THRESHOLD.max} step={BOX_SIZE_THRESHOLD.step}
+              value={boxSize} onChange={e => setBoxSize(Number(e.target?.value))} />
+          </FormControl>
+          <FormControl>
+            <div><OpacityIcon /> Text opacity</div>
+            <Slider marks defaultValue={DEFAULT_TEXT_OPACITY} valueLabelDisplay="auto" 
+              min={TEXT_OPACITY_THRESHOLD.min} max={TEXT_OPACITY_THRESHOLD.max} step={TEXT_OPACITY_THRESHOLD.step}
+              value={textOpacity} onChange={e => setTextOpacity(Number(e.target?.value))} />
+          </FormControl>
+          <div className="m-auto">
+            <Button variant="contained" onClick={printResult} endIcon={<PrintIcon />}>Print</Button>
+          </div>
         </div>
       </form>
 
