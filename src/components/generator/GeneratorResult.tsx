@@ -10,17 +10,9 @@ interface GeneratorResultProps {
 const GeneratorResult: React.FC<GeneratorResultProps> = ({text}) => {
   const [selectedFont, setSelectedFont] = useState(fonts[0].name);
 
-  const fontFaces = fonts.map(font => (
-    `@font-face {
-      font-family: '${font.name}';
-      src: url('${font.url}') format('truetype');
-    }`
-  ));
 
   return (
     <>
-      <style>{fontFaces.join("\n")}</style>
-
       <TextField select label="Font"
         value={selectedFont} onChange={e => setSelectedFont(e.target.value)}>
         {fonts.map(font => (
