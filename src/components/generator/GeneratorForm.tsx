@@ -29,7 +29,7 @@ const GeneratorForm = () => {
         <FormHelperText id="text-input-helper">
           Word limit: {WORD_LIMIT}. Word count: {formText.length}
         </FormHelperText>
-        <Button type="submit">Generate</Button>
+        <Button variant="contained" type="submit">Generate</Button>
       </form>
 
       <GeneratorResult text={inputText}/>

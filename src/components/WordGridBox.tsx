@@ -11,7 +11,7 @@ interface WordGridBoxProps {
 }
 
 const WordGridBox: React.FC<WordGridBoxProps> = ({
-  text, size = DEFAULT_BOX_SIZE, lineColor = colors.green[300], 
+  text, size = DEFAULT_BOX_SIZE, lineColor = colors.grey[400], 
   textOpacity = DEFAULT_TEXT_OPACITY,  ...props
 }) => {
   const bgColor = "white";
@@ -20,7 +20,7 @@ const WordGridBox: React.FC<WordGridBoxProps> = ({
   return (
     <div className='relative text-black' 
       style={{
-        width: size, height: size, 
+        width: size, height: size, pageBreakInside: "avoid",
         fontSize: (size * 3/4), lineHeight: `${size}px`
       }} {...props}>
 
