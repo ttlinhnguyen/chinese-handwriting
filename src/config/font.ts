@@ -6,23 +6,23 @@ import FZYBKSK from "@/assets/fonts/FZYBKSK.ttf";
 
 const fonts = [
   {
-    name: "FZKaiTiGBK",
+    name: "FZ KaiTi GBK",
     url: FangZhengKaiTiGBK,
   },
   {
-    name: "FZShuSongGBK",
+    name: "FZ ShuSong GBK",
     url: FangZhengShuSongGBK,
   },
   {
-    name: "FZFangSongGBK",
+    name: "FZ FangSong GBK",
     url: FangZhengFangSongGBK,
   },
   {
-    name: "FZYingBiKaiShu",
+    name: "FZ YingBi KaiShu",
     url: FZYBKSK,
   },
   {
-    name: "FZYingBiXingShu",
+    name: "FZ YingBi XingShu",
     url: FZYBXSJF,
   },
 ];
