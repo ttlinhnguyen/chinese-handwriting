@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "@/index.css";
+import "@/print.css";
 import App from "@/app/App.tsx";
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

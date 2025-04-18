@@ -1,5 +1,6 @@
 import GeneratorForm from "@/components/generator/GeneratorForm";
 import { FONTS } from "@/config/font";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Container } from "@mui/material";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <style>{fontFaces.join("\n")}</style>
 
       <Container maxWidth="md">
+        <h1 className="text-center p-3 text-3xl">Chinese Handwriting Practice</h1>
         <GeneratorForm />
       </Container>
     </>

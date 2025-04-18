@@ -1,5 +1,4 @@
-import "./GeneratorResult.css";
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { Button, FormControl, MenuItem, Slider, TextField, InputAdornment } from "@mui/material";
 import { Print as PrintIcon, FontDownload as FontIcon, FormatSize as FormatSizeIcon, Opacity as OpacityIcon } from "@mui/icons-material";
 import WordGridBox from "@/components/WordGridBox";
