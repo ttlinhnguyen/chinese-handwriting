@@ -72,8 +72,8 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
             </MenuItem>
           ))}
         </TextField>
-        <div className="grid md:grid-cols-3 gap-5">
-          <FormControl>
+        <div className="grid md:grid-cols-5 gap-5">
+          <FormControl className="md:col-span-2">
             <div>
               <FormatSizeIcon /> Size
             </div>
@@ -88,7 +88,7 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
               onChange={handleSizeInput}
             />
           </FormControl>
-          <FormControl>
+          <FormControl className="md:col-span-2">
             <div>
               <OpacityIcon /> Text opacity
             </div>
@@ -103,7 +103,7 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
               onChange={handleTextOpacityInput}
             />
           </FormControl>
-          <div className="m-auto">
+          <div className="m-auto md:col-span-1">
             <Button variant="contained" onClick={printResult} endIcon={<PrintIcon />}>
               Print
             </Button>
