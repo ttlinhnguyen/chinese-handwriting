@@ -25,6 +25,17 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
   const [boxSize, setBoxSize] = useState<number>(DEFAULT_BOX_SIZE);
   const [textOpacity, setTextOpacity] = useState<number>(DEFAULT_TEXT_OPACITY);
 
+  const fontSelectSlotProps = {
+    input: {
+      startAdornment: (
+        // Add font icon to the start of the input
+        <InputAdornment position="start">
+          <FontIcon />
+        </InputAdornment>
+      ),
+    },
+  };
+
   const printResult = () => {
     window.print();
   };
@@ -51,15 +62,7 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
           size="small"
           label="Font"
           defaultValue={DEFAULT_FONT_NAME}
-          slotProps={{
-            input: {
-              startAdornment: (
-                <InputAdornment position="start">
-                  <FontIcon />
-                </InputAdornment>
-              ),
-            },
-          }}
+          slotProps={fontSelectSlotProps}
           value={selectedFont}
           onChange={handleFontInput}
         >
@@ -110,7 +113,7 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
 
       <div style={{ fontFamily: selectedFont }} className="printable inline-flex flex-wrap gap-y-5">
         {text.split("").map((word, index) => (
-          <WordGridBox key={index} text={word} size={boxSize} textOpacity={textOpacity}></WordGridBox>
+          <WordGridBox key={index} text={word} size={boxSize} textOpacity={textOpacity} />
         ))}
       </div>
     </>
