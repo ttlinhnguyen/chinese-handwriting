@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Button, FormControl, FormHelperText, InputLabel, OutlinedInput } from "@mui/material";
+import { Alert, Button, FormControl, FormHelperText, InputLabel, OutlinedInput } from "@mui/material";
 import { EditNote as EditNoteIcon } from "@mui/icons-material";
 
 import GeneratorResult from "@/components/generator/GeneratorResult";
@@ -11,6 +11,7 @@ const GeneratorForm = () => {
 
   const sanitiseTextInput = (text: string) => text.trim();
   const validateTextInput = () => sanitiseTextInput(formText).length <= WORD_LIMIT;
+  const isSubmitDisabled = () => formText === inputText || !validateTextInput();
 
   const handleTextInput = (e: ChangeEvent<HTMLInputElement>) => setFormText(e.target.value);
   const handleFormSubmit = (e: FormEvent) => {
@@ -18,7 +19,6 @@ const GeneratorForm = () => {
 
     if (!validateTextInput()) {
       setInputText("");
-      console.error("Exceed word limit");
       return;
     }
 
@@ -27,17 +27,18 @@ const GeneratorForm = () => {
 
   return (
     <div className="m-3">
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} className="grid gap-3">
+        {!validateTextInput() && <Alert severity="error">Exceeds word limit</Alert>}
+
         <FormControl fullWidth error={!validateTextInput()}>
           <InputLabel>Text</InputLabel>
           <OutlinedInput label="Text" multiline minRows={5} value={formText} onChange={handleTextInput} />
-          {!validateTextInput() && <FormHelperText>Exceeds word limit</FormHelperText>}
           <FormHelperText>
             Word limit: {WORD_LIMIT}. Word count: {sanitiseTextInput(formText).length}
           </FormHelperText>
         </FormControl>
 
-        <Button variant="contained" type="submit" disabled={formText === inputText} endIcon={<EditNoteIcon />}>
+        <Button variant="contained" type="submit" disabled={isSubmitDisabled()} endIcon={<EditNoteIcon />}>
           Generate
         </Button>
       </form>
