@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Button, FormHelperText, TextField } from "@mui/material";
 import { EditNote as EditNoteIcon } from "@mui/icons-material";
 
@@ -20,6 +20,8 @@ const GeneratorForm = () => {
     setInputText(formText);
   };
 
+  const handleTextInput = (e: ChangeEvent<HTMLInputElement>) => setFormText(e.target.value);
+
   return (
     <div className="m-3">
       <form onSubmit={handleFormSubmit}>
@@ -31,7 +33,7 @@ const GeneratorForm = () => {
           label="Text"
           name="text"
           value={formText}
-          onChange={(e) => setFormText(e.target.value)}
+          onChange={handleTextInput}
         />
         <FormHelperText id="text-input-helper">
           Word limit: {WORD_LIMIT}. Word count: {formText.length}
