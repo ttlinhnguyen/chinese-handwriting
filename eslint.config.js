@@ -20,13 +20,10 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": [
-        "warn",
-        { allowConstantExport: true },
-      ],
-      "indent": ["error", 2],
-      "semi": ["error", "always"],
-      "quotes": ["error", "double"],
+      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      indent: ["error", 2],
+      semi: ["error", "always"],
+      quotes: ["error", "double"],
     },
   },
 );
