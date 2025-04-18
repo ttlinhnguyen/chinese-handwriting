@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Button, FormHelperText, TextField } from "@mui/material";
+import { Button, FormControl, FormHelperText, InputLabel, OutlinedInput } from "@mui/material";
 import { EditNote as EditNoteIcon } from "@mui/icons-material";
 
 import GeneratorResult from "@/components/generator/GeneratorResult";
@@ -9,35 +9,34 @@ const GeneratorForm = () => {
   const [formText, setFormText] = useState<string>(DEFAULT_TEXT);
   const [inputText, setInputText] = useState<string>(DEFAULT_TEXT);
 
+  const sanitiseTextInput = (text: string) => text.trim();
+  const validateTextInput = () => sanitiseTextInput(formText).length <= WORD_LIMIT;
+
+  const handleTextInput = (e: ChangeEvent<HTMLInputElement>) => setFormText(e.target.value);
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (formText.length > WORD_LIMIT) {
+
+    if (!validateTextInput()) {
       setInputText("");
       console.error("Exceed word limit");
       return;
     }
 
-    setInputText(formText);
+    setInputText(sanitiseTextInput(formText));
   };
-
-  const handleTextInput = (e: ChangeEvent<HTMLInputElement>) => setFormText(e.target.value);
 
   return (
     <div className="m-3">
       <form onSubmit={handleFormSubmit}>
-        <TextField
-          multiline
-          fullWidth
-          minRows={5}
-          aria-describedby="text-input-helper"
-          label="Text"
-          name="text"
-          value={formText}
-          onChange={handleTextInput}
-        />
-        <FormHelperText id="text-input-helper">
-          Word limit: {WORD_LIMIT}. Word count: {formText.length}
-        </FormHelperText>
+        <FormControl fullWidth error={!validateTextInput()}>
+          <InputLabel>Text</InputLabel>
+          <OutlinedInput label="Text" multiline minRows={5} value={formText} onChange={handleTextInput} />
+          {!validateTextInput() && <FormHelperText>Exceeds word limit</FormHelperText>}
+          <FormHelperText>
+            Word limit: {WORD_LIMIT}. Word count: {sanitiseTextInput(formText).length}
+          </FormHelperText>
+        </FormControl>
+
         <Button variant="contained" type="submit" disabled={formText === inputText} endIcon={<EditNoteIcon />}>
           Generate
         </Button>
