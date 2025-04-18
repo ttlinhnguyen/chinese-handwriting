@@ -1,6 +1,5 @@
 import GeneratorForm from "@/components/generator/GeneratorForm";
 import { FONTS } from "@/config/font";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Container } from "@mui/material";
 
 function App() {
