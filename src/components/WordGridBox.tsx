@@ -1,6 +1,6 @@
 import { DEFAULT_BOX_SIZE, DEFAULT_TEXT_OPACITY } from "@/config/word-grid";
 import { colors } from "@mui/material";
-import React, { PropsWithChildren } from "react";
+import React, { CSSProperties, PropsWithChildren } from "react";
 
 interface WordGridBoxProps {
   text: string;
@@ -19,19 +19,16 @@ const WordGridBox: React.FC<WordGridBoxProps> = ({
 }) => {
   const bgColor = "white";
   const strokeWidth = size / 50;
+  const cssProperties: CSSProperties = {
+    width: size,
+    height: size,
+    pageBreakInside: "avoid",
+    fontSize: (size * 17) / 20,
+    lineHeight: `${size}px`,
+  };
 
   return (
-    <div
-      className="relative text-black"
-      style={{
-        width: size,
-        height: size,
-        pageBreakInside: "avoid",
-        fontSize: (size * 17) / 20,
-        lineHeight: `${size}px`,
-      }}
-      {...props}
-    >
+    <div className="relative text-black" style={cssProperties} {...props}>
       {/* Grid */}
       <svg className="absolute" xmlns="http://www.w3.org/2000/svg">
         {/* Outline */}
