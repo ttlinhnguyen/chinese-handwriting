@@ -21,7 +21,7 @@ const WordGridBox: React.FC<WordGridBoxProps> = ({
     <div className='relative text-black' 
       style={{
         width: size, height: size, pageBreakInside: "avoid",
-        fontSize: (size * 3/4), lineHeight: `${size}px`
+        fontSize: (size * 17/20), lineHeight: `${size}px`
       }} {...props}>
 
       {/* Grid */}
