@@ -111,9 +111,16 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
         </div>
       </form>
 
-      <div style={{ fontFamily: selectedFont }} className="printable inline-flex flex-wrap gap-y-5">
-        {text.split("").map((word, index) => (
-          <WordGridBox key={index} text={word} size={boxSize} textOpacity={textOpacity} />
+      <div style={{ fontFamily: selectedFont }} className="grid grid-cols-1 printable gap-y-10">
+        {text.split("\n").map((paragraph, index) => (
+          <div key={`p${index}`} className="inline-flex flex-wrap gap-y-5">
+            {paragraph
+              .trim()
+              .split("")
+              .map((word, index) => (
+                <WordGridBox key={index} text={word} size={boxSize} textOpacity={textOpacity} />
+              ))}
+          </div>
         ))}
       </div>
     </>
