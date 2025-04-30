@@ -1,25 +1,21 @@
 import GeneratorForm from "@/components/generator/GeneratorForm";
-import { FONTS } from "@/config/font";
-import { Container } from "@mui/material";
+import { Container, LinearProgress } from "@mui/material";
+import { loadFonts } from "@/utils/fonts";
+import { useEffect, useState } from "react";
 
 function App() {
-  // Load font faces' CSS styles
-  const fontFaces = FONTS.map(
-    (font) =>
-      `@font-face {
-      font-family: '${font.name}';
-      src: url('${font.url}') format('truetype');
-    }`,
-  );
+  const [areFontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    loadFonts().then(() => setFontsLoaded(true));
+  }, []);
 
   return (
     <>
-      <style>{fontFaces.join("\n")}</style>
-
-      <Container maxWidth="md">
+      <nav>
         <h1 className="text-center p-3 text-3xl">Chinese Handwriting Practice</h1>
-        <GeneratorForm />
-      </Container>
+      </nav>
+      <Container maxWidth="md">{areFontsLoaded ? <GeneratorForm /> : <LinearProgress />}</Container>
     </>
   );
 }

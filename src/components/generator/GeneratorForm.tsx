@@ -23,12 +23,8 @@ const GeneratorForm = () => {
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (!validateTextInput()) {
-      setInputText("");
-      return;
-    }
-
-    setInputText(sanitiseTextInput(formText));
+    const text = validateTextInput() ? sanitiseTextInput(formText) : "";
+    setInputText(text);
   };
 
   return (
