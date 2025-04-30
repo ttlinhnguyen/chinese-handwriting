@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    text {
+      font-family: "Kaiti", "KaiTi", "KaiTi SC", "STKaiti", serif;
+      font-size: 100px;
+    }
+  </style>
+  <text x="50%" y="75%" text-anchor="middle">字</text>
+</svg>
