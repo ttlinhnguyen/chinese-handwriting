@@ -1,29 +1,33 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Button, FormControl, MenuItem, Slider, TextField, InputAdornment } from "@mui/material";
 import {
   Print as PrintIcon,
+  Save as SaveIcon,
+  RotateLeft as RotateLeftIcon,
   FontDownload as FontIcon,
   FormatSize as FormatSizeIcon,
   Opacity as OpacityIcon,
 } from "@mui/icons-material";
 import WordGridBox from "@/components/WordGridBox";
 import { FONTS } from "@/config/font";
-import {
-  BOX_SIZE_THRESHOLD,
-  DEFAULT_BOX_SIZE,
-  DEFAULT_FONT_NAME,
-  DEFAULT_TEXT_OPACITY,
-  TEXT_OPACITY_THRESHOLD,
-} from "@/config/word-grid";
+import { BOX_SIZE_THRESHOLD, TEXT_OPACITY_THRESHOLD } from "@/config/word-grid";
+import useGeneratorSettings from "@/hooks/useGeneratorSettings";
 
 interface GeneratorResultProps {
   text: string;
 }
 
 const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
-  const [selectedFont, setSelectedFont] = useState(DEFAULT_FONT_NAME);
-  const [boxSize, setBoxSize] = useState<number>(DEFAULT_BOX_SIZE);
-  const [textOpacity, setTextOpacity] = useState<number>(DEFAULT_TEXT_OPACITY);
+  const { generatorSettings, updateGeneratorSettings, resetGeneratorSettings } = useGeneratorSettings();
+  const [selectedFont, setSelectedFont] = useState(generatorSettings.font);
+  const [boxSize, setBoxSize] = useState<number>(generatorSettings.size);
+  const [textOpacity, setTextOpacity] = useState<number>(generatorSettings.opacity);
+
+  useEffect(() => {
+    setSelectedFont(generatorSettings.font);
+    setBoxSize(generatorSettings.size);
+    setTextOpacity(generatorSettings.opacity);
+  }, [generatorSettings]);
 
   const fontSelectSlotProps = {
     input: {
@@ -47,6 +51,14 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
     return target.value;
   };
 
+  const saveGeneratorSettings = () => {
+    updateGeneratorSettings({
+      font: selectedFont,
+      size: boxSize,
+      opacity: textOpacity,
+    });
+  };
+
   const handleFontInput = (e: ChangeEvent<HTMLInputElement>) => setSelectedFont(e.target.value);
   const handleSizeInput = (e: Event) => setBoxSize(getEventNumberValue(e));
   const handleTextOpacityInput = (e: Event) => setTextOpacity(getEventNumberValue(e));
@@ -55,13 +67,13 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
 
   return (
     <>
-      <h2 className="mt-10 mb-5">Settings</h2>
-      <form className="mb-10 grid gap-5">
+      <form className="my-10 py-5 grid gap-5 border-y border-gray-300">
+        <h2>Settings</h2>
         <TextField
           select
           size="small"
           label="Font"
-          defaultValue={DEFAULT_FONT_NAME}
+          defaultValue={generatorSettings.font}
           slotProps={fontSelectSlotProps}
           value={selectedFont}
           onChange={handleFontInput}
@@ -72,14 +84,14 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
             </MenuItem>
           ))}
         </TextField>
-        <div className="grid md:grid-cols-5 gap-5">
+        <div className="grid md:grid-cols-4 gap-5">
           <FormControl className="md:col-span-2">
             <div>
               <FormatSizeIcon /> Size
             </div>
             <Slider
               marks
-              defaultValue={DEFAULT_BOX_SIZE}
+              defaultValue={generatorSettings.size}
               valueLabelDisplay="auto"
               min={BOX_SIZE_THRESHOLD.min}
               max={BOX_SIZE_THRESHOLD.max}
@@ -94,7 +106,7 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
             </div>
             <Slider
               marks
-              defaultValue={DEFAULT_TEXT_OPACITY}
+              defaultValue={generatorSettings.opacity}
               valueLabelDisplay="auto"
               min={TEXT_OPACITY_THRESHOLD.min}
               max={TEXT_OPACITY_THRESHOLD.max}
@@ -103,11 +115,17 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
               onChange={handleTextOpacityInput}
             />
           </FormControl>
-          <div className="m-auto md:col-span-1">
-            <Button variant="contained" onClick={printResult} endIcon={<PrintIcon />}>
-              Print
-            </Button>
-          </div>
+        </div>
+        <div className="flex gap-3">
+          <Button variant="contained" onClick={saveGeneratorSettings} endIcon={<SaveIcon />}>
+            Save
+          </Button>
+          <Button variant="outlined" onClick={resetGeneratorSettings} endIcon={<RotateLeftIcon />}>
+            Reset
+          </Button>
+          <Button color="secondary" variant="contained" onClick={printResult} endIcon={<PrintIcon />}>
+            Print
+          </Button>
         </div>
       </form>
 
