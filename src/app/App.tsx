@@ -1,21 +1,17 @@
 import GeneratorForm from "@/components/generator/GeneratorForm";
-import { Container, LinearProgress } from "@mui/material";
-import { loadFonts } from "@/utils/fonts";
-import { useEffect, useState } from "react";
+import { Container } from "@mui/material";
+import { useState } from "react";
+import AppLoading from "./AppLoading";
 
 function App() {
-  const [areFontsLoaded, setFontsLoaded] = useState(false);
-
-  useEffect(() => {
-    loadFonts().then(() => setFontsLoaded(true));
-  }, []);
+  const [isLoaded, setLoaded] = useState(false);
 
   return (
     <>
       <nav>
         <h1 className="text-center p-3 text-3xl">Chinese Handwriting Practice</h1>
       </nav>
-      <Container maxWidth="md">{areFontsLoaded ? <GeneratorForm /> : <LinearProgress />}</Container>
+      <Container maxWidth="md">{isLoaded ? <GeneratorForm /> : <AppLoading setLoaded={setLoaded} />}</Container>
     </>
   );
 }
