@@ -1,10 +1,10 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { Button, FormControl, MenuItem, Slider, TextField, InputAdornment } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Button, FormControl, MenuItem, Slider, Select, SelectChangeEvent, Typography } from "@mui/material";
 import {
   Print as PrintIcon,
   Save as SaveIcon,
   RotateLeft as RotateLeftIcon,
-  FontDownload as FontIcon,
+  FontDownloadOutlined as FontIcon,
   FormatSize as FormatSizeIcon,
   Opacity as OpacityIcon,
 } from "@mui/icons-material";
@@ -29,17 +29,6 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
     setTextOpacity(generatorSettings.opacity);
   }, [generatorSettings]);
 
-  const fontSelectSlotProps = {
-    input: {
-      startAdornment: (
-        // Add font icon to the start of the input
-        <InputAdornment position="start">
-          <FontIcon />
-        </InputAdornment>
-      ),
-    },
-  };
-
   const printResult = () => {
     window.print();
   };
@@ -59,7 +48,7 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
     });
   };
 
-  const handleFontInput = (e: ChangeEvent<HTMLInputElement>) => setSelectedFont(e.target.value);
+  const handleFontInput = (e: SelectChangeEvent<string>) => setSelectedFont(e.target.value);
   const handleSizeInput = (e: Event) => setBoxSize(getEventNumberValue(e));
   const handleTextOpacityInput = (e: Event) => setTextOpacity(getEventNumberValue(e));
 
@@ -68,27 +57,30 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
   return (
     <>
       <form className="my-10 py-5 grid gap-5 border-y border-gray-300">
-        <h2>Settings</h2>
-        <TextField
-          select
-          size="small"
-          label="Font"
-          defaultValue={generatorSettings.font}
-          slotProps={fontSelectSlotProps}
-          value={selectedFont}
-          onChange={handleFontInput}
-        >
-          {FONTS.map((font) => (
-            <MenuItem value={font.name} key={font.name} style={{ fontFamily: font.name }}>
-              {font.name}
-            </MenuItem>
-          ))}
-        </TextField>
+        <Typography variant="h5">Settings</Typography>
+        <FormControl>
+          <Typography variant="button" gutterBottom>
+            <FontIcon /> Font
+          </Typography>
+          <Select
+            size="small"
+            defaultValue={generatorSettings.font}
+            value={selectedFont}
+            onChange={handleFontInput}
+            style={{ fontFamily: selectedFont }}
+          >
+            {FONTS.map((font) => (
+              <MenuItem value={font.name} key={font.name} style={{ fontFamily: font.name }}>
+                {font.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <div className="grid md:grid-cols-4 gap-5">
           <FormControl className="md:col-span-2">
-            <div>
+            <Typography variant="button" gutterBottom>
               <FormatSizeIcon /> Size
-            </div>
+            </Typography>
             <Slider
               marks
               defaultValue={generatorSettings.size}
@@ -101,9 +93,9 @@ const GeneratorResult: React.FC<GeneratorResultProps> = ({ text }) => {
             />
           </FormControl>
           <FormControl className="md:col-span-2">
-            <div>
+            <Typography variant="button" gutterBottom>
               <OpacityIcon /> Text opacity
-            </div>
+            </Typography>
             <Slider
               marks
               defaultValue={generatorSettings.opacity}
